@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 8 Grounds Checker | Which Eviction Grounds Apply?</title>
+    <meta name="description" content="Find out which Section 8 eviction grounds apply to your situation after the Renters' Rights Act 2025. Free checker for England landlords.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .subtitle {
+            color: #8b8b8b;
+            font-size: 1rem;
+        }
+        
+        .alert {
+            background: #ff6b6b20;
+            border: 1px solid #ff6b6b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .alert strong {
+            color: #ff6b6b;
+        }
+        
+        .checker-card {
+            background: #ffffff10;
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .question {
+            margin-bottom: 1.5rem;
+        }
+        
+        .question label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .question select, .question input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #ffffff30;
+            background: #ffffff10;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .question select:focus, .question input:focus {
+            outline: none;
+            border-color: #4dabf7;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(77, 171, 247, 0.3);
+        }
+        
+        .results {
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .result-card {
+            background: #ffffff10;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .result-card.mandatory {
+            border-left: 4px solid #51cf66;
+        }
+        
+        .result-card.discretionary {
+            border-left: 4px solid #ffa94d;
+        }
+        
+        .ground-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ground-tag.mandatory {
+            background: #51cf6620;
+            color: #51cf66;
+        }
+        
+        .ground-tag.discretionary {
+            background: #ffa94d20;
+            color: #ffa94d;
+        }
+        
+        .ground-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ground-details {
+            font-size: 0.9rem;
+            color: #8b8b8b;
+        }
+        
+        .notice-period {
+            background: #4dabf720;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+        
+        .no-grounds {
+            text-align: center;
+            padding: 2rem;
+            color: #8b8b8b;
+        }
+        
+        .disclaimer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #ffffff05;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .next-steps {
+            background: #51cf6620;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .next-steps h3 {
+            color: #51cf66;
+            margin-bottom: 0.75rem;
+        }
+        
+        .next-steps ul {
+            list-style: none;
+        }
+        
+        .next-steps li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .next-steps li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #51cf66;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        footer a {
+            color: #4dabf7;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffff10;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .checkbox-item:hover {
+            background: #ffffff20;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+        }
+        
+        .checkbox-item.selected {
+            background: #4dabf730;
+            border: 1px solid #4dabf7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Section 8 Grounds Checker</h1>
+            <p class="subtitle">Find out which eviction grounds apply after the Renters' Rights Act 2025</p>
+        </header>
+        
+        <div class="alert">
+            <strong>⚠️ Section 21 is abolished from 1 May 2026</strong><br>
+            After this date, you can only evict tenants using Section 8 with valid grounds. Use this checker to find which grounds apply to your situation.
+        </div>
+        
+        <div class="checker-card">
+            <form id="checker-form">
+                <div class="question">
+                    <label>Why do you need possession of your property?</label>
+                    <p style="font-size: 0.85rem; color: #8b8b8b; margin-bottom: 0.5rem;">Select all that apply</p>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="rent_arrears"> Tenant owes rent
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="antisocial"> Anti-social behaviour
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="damage"> Property damage
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="sell"> Want to sell
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="move_in"> Moving back in
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="family"> Family needs it
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="student"> Student property
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="reason" value="breach"> Tenancy breach
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question" id="rent-question" style="display: none;">
+                    <label>How much rent is owed?</label>
+                    <select id="rent-amount">
+                        <option value="">Select...</option>
+                        <option value="2months">2+ months rent arrears</option>
+                        <option value="1month">1-2 months rent arrears</option>
+                        <option value="persistent">Persistent late payment (less than 1 month)</option>
+                    </select>
+                </div>
+                
+                <div class="question" id="antisocial-question" style="display: none;">
+                    <label>What type of anti-social behaviour?</label>
+                    <select id="antisocial-type">
+                        <option value="">Select...</option>
+                        <option value="criminal">Criminal conviction or offence</option>
+                        <option value="noise">Noise nuisance / harassment</option>
+                        <option value="threatening">Threatening behaviour</option>
+                        <option value="other">Other anti-social behaviour</option>
+                    </select>
+                </div>
+                
+                <div class="question" id="movein-question" style="display: none;">
+                    <label>When did the tenancy start?</label>
+                    <select id="tenancy-length">
+                        <option value="">Select...</option>
+                        <option value="under6">Less than 6 months ago</option>
+                        <option value="6to12">6-12 months ago</option>
+                        <option value="over12">More than 12 months ago</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Check Which Grounds Apply</button>
+            </form>
+            
+            <div id="results" class="results">
+                <h2 style="margin-bottom: 1rem; color: #fff;">Your Applicable Grounds</h2>
+                <div id="grounds-list"></div>
+                <div class="next-steps">
+                    <h3>Next Steps</h3>
+                    <ul>
+                        <li>Download and complete <a href="https://www.gov.uk/government/publications/form-3-section-8-notice-seeking-possession-of-a-property-let-on-an-assured-tenancy" target="_blank" style="color: #4dabf7;">Form 3 (Section 8 Notice)</a></li>
+                        <li>Ensure you have evidence for each ground you're using</li>
+                        <li>Give the correct notice period for your grounds</li>
+                        <li>Consider getting legal advice if the case is complex</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> This tool provides general information about Section 8 grounds under the Renters' Rights Act 2025. It is not legal advice. For specific legal situations, consult a qualified solicitor. Information correct as of February 2026.
+        </div>
+        
+        <footer>
+            <p>Section 8 Grounds Checker | <a href="#">About</a> | <a href="#">Contact</a></p>
+            <p style="margin-top: 0.5rem;">Built for England landlords navigating post-Section 21 eviction rules</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Ground definitions based on Renters' Rights Act 2025
+        const grounds = {
+            // MANDATORY GROUNDS (court MUST grant possession)
+            rent_2months: {
+                ground: "Ground 8",
+                type: "mandatory",
+                title: "Serious Rent Arrears (2+ months)",
+                description: "Tenant is at least 2 months behind on rent at the time of serving notice AND at the court hearing.",
+                noticePeriod: "2 weeks",
+                evidence: "Rent account statement, payment records"
+            },
+            rent_3months_new: {
+                ground: "Ground 8A (New)",
+                type: "mandatory",
+                title: "Persistent Serious Arrears",
+                description: "NEW: Tenant has been 3+ months behind on rent at least 3 times in the last 3 years (even if paid up now).",
+                noticePeriod: "4 weeks",
+                evidence: "Rent statements showing 3 instances of 3+ month arrears"
+            },
+            criminal: {
+                ground: "Ground 7A",
+                type: "mandatory",
+                title: "Criminal Conviction",
+                description: "Tenant convicted of serious offence in or near the property (violence, drugs, sexual offences, etc.)",
+                noticePeriod: "2 weeks",
+                evidence: "Court conviction record"
+            },
+            antisocial_new: {
+                ground: "Ground 14A (New)",
+                type: "mandatory",
+                title: "Serious Anti-Social Behaviour",
+                description: "NEW: Tenant has engaged in serious anti-social behaviour proven by evidence (not necessarily conviction)",
+                noticePeriod: "2 weeks",
+                evidence: "Police reports, witness statements, noise complaints, CCTV"
+            },
+            breach_conditional: {
+                ground: "Ground 12",
+                type: "discretionary",
+                title: "Tenancy Breach",
+                description: "Tenant has broken any term of the tenancy agreement (other than rent)",
+                noticePeriod: "2 weeks",
+                evidence: "Tenancy agreement, evidence of breach"
+            },
+            damage: {
+                ground: "Ground 13",
+                type: "discretionary",
+                title: "Property Damage or Neglect",
+                description: "Tenant has caused damage to the property or furniture, or allowed it to deteriorate",
+                noticePeriod: "2 weeks",
+                evidence: "Photos, inventory reports, repair estimates"
+            },
+            antisocial: {
+                ground: "Ground 14",
+                type: "discretionary",
+                title: "Anti-Social Behaviour",
+                description: "Tenant or visitors have caused nuisance, annoyance, or committed offence against person in locality",
+                noticePeriod: "2 weeks",
+                evidence: "Witness statements, police reports, diary of incidents"
+            },
+            domestic_abuse: {
+                ground: "Ground 14A (Domestic Abuse)",
+                type: "mandatory",
+                title: "Domestic Abuse",
+                description: "Tenant has been convicted of domestic abuse against co-habiting partner/spouse",
+                noticePeriod: "2 weeks",
+                evidence: "Court conviction or injunction"
+            },
+            
+            // LANDLORD GROUNDS (owner occupation)
+            owner_occupy_6mo: {
+                ground: "Ground 1",
+                type: "mandatory",
+                title: "Owner Occupation (6+ months tenancy)",
+                description: "You want to live in the property as your main home. Tenancy must have lasted 6+ months.",
+                noticePeriod: "2 months",
+                evidence: "Proof you own the property, statement of intention"
+            },
+            owner_occupy_new: {
+                ground: "Ground 1A (New)",
+                type: "mandatory",
+                title: "Spouse/Partner Moving In",
+                description: "NEW: You want your spouse, civil partner, or partner to live there as their main home.",
+                noticePeriod: "2 months",
+                evidence: "Proof of relationship, statement of intention"
+            },
+            family_12mo: {
+                ground: "Ground 2",
+                type: "mandatory",
+                title: "Family Member Needs Property",
+                description: "A family member needs to live in the property. Tenancy must have lasted 12+ months.",
+                noticePeriod: "2 months",
+                evidence: "Proof of family relationship, statement of need"
+            },
+            
+            // STUDENT
+            student_holiday: {
+                ground: "Ground 4",
+                type: "mandatory",
+                title: "Student Let (Academic Holiday)",
+                description: "Property is let to students for the academic year, you need it back for the summer.",
+                noticePeriod: "2 weeks",
+                evidence: "Proof property was let as student accommodation"
+            },
+            
+            // SELL
+            sell_6mo: {
+                ground: "Ground 6A",
+                type: "discretionary",
+                title: "Selling Property",
+                description: "You intend to sell the property with vacant possession. Tenancy must be 6+ months.",
+                noticePeriod: "2 months",
+                evidence: "Evidence of intention to sell (estate agent listing, etc.)"
+            }
+        };
+        
+        // Show/hide conditional questions
+        document.querySelectorAll('input[name="reason"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                this.closest('.checkbox-item').classList.toggle('selected', this.checked);
+                
+                // Show relevant follow-up questions
+                const rentSelected = document.querySelector('input[value="rent_arrears"]').checked;
+                const antisocialSelected = document.querySelector('input[value="antisocial"]').checked;
+                const moveinSelected = document.querySelector('input[value="move_in"]').checked || document.querySelector('input[value="family"]').checked;
+                
+                document.getElementById('rent-question').style.display = rentSelected ? 'block' : 'none';
+                document.getElementById('antisocial-question').style.display = antisocialSelected ? 'block' : 'none';
+                document.getElementById('movein-question').style.display = moveinSelected ? 'block' : 'none';
+            });
+        });
+        
+        // Form submission
+        document.getElementById('checker-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const selectedReasons = Array.from(document.querySelectorAll('input[name="reason"]:checked')).map(cb => cb.value);
+            const rentAmount = document.getElementById('rent-amount').value;
+            const antisocialType = document.getElementById('antisocial-type').value;
+            const tenancyLength = document.getElementById('tenancy-length').value;
+            
+            let applicableGrounds = [];
+            
+            // Match grounds to selections
+            if (selectedReasons.includes('rent_arrears')) {
+                if (rentAmount === '2months') {
+                    applicableGrounds.push(grounds.rent_2months);
+                    applicableGrounds.push(grounds.rent_3months_new);
+                } else if (rentAmount === '1month') {
+                    applicableGrounds.push(grounds.rent_3months_new);
+                }
+            }
+            
+            if (selectedReasons.includes('antisocial')) {
+                if (antisocialType === 'criminal') {
+                    applicableGrounds.push(grounds.criminal);
+                }
+                applicableGrounds.push(grounds.antisocial_new);
+                applicableGrounds.push(grounds.antisocial);
+            }
+            
+            if (selectedReasons.includes('damage')) {
+                applicableGrounds.push(grounds.damage);
+            }
+            
+            if (selectedReasons.includes('breach')) {
+                applicableGrounds.push(grounds.breach_conditional);
+            }
+            
+            if (selectedReasons.includes('move_in')) {
+                if (tenancyLength !== 'under6') {
+                    applicableGrounds.push(grounds.owner_occupy_6mo);
+                }
+                applicableGrounds.push(grounds.owner_occupy_new);
+            }
+            
+            if (selectedReasons.includes('family')) {
+                if (tenancyLength === 'over12') {
+                    applicableGrounds.push(grounds.family_12mo);
+                }
+            }
+            
+            if (selectedReasons.includes('student')) {
+                applicableGrounds.push(grounds.student_holiday);
+            }
+            
+            if (selectedReasons.includes('sell')) {
+                if (tenancyLength !== 'under6') {
+                    applicableGrounds.push(grounds.sell_6mo);
+                }
+            }
+            
+            // Display results
+            displayResults(applicableGrounds);
+        });
+        
+        function displayResults(groundsList) {
+            const resultsDiv = document.getElementById('results');
+            const listDiv = document.getElementById('grounds-list');
+            
+            if (groundsList.length === 0) {
+                listDiv.innerHTML = `
+                    <div class="no-grounds">
+                        <p>No Section 8 grounds appear to apply to your situation.</p>
+                        <p style="margin-top: 1rem;">This doesn't mean you can't evict - you may need legal advice to explore your options.</p>
+                    </div>
+                `;
+            } else {
+                // Separate mandatory and discretionary
+                const mandatory = groundsList.filter(g => g.type === 'mandatory');
+                const discretionary = groundsList.filter(g => g.type === 'discretionary');
+                
+                let html = '';
+                
+                if (mandatory.length > 0) {
+                    html += '<h3 style="color: #51cf66; margin-bottom: 1rem;">✅ Mandatory Grounds (Court MUST grant possession)</h3>';
+                    mandatory.forEach(g => {
+                        html += createGroundCard(g);
+                    });
+                }
+                
+                if (discretionary.length > 0) {
+                    html += '<h3 style="color: #ffa94d; margin: 1.5rem 0 1rem;">⚠️ Discretionary Grounds (Court MAY grant possession)</h3>';
+                    discretionary.forEach(g => {
+                        html += createGroundCard(g);
+                    });
+                }
+                
+                listDiv.innerHTML = html;
+            }
+            
+            resultsDiv.style.display = 'block';
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function createGroundCard(ground) {
+            return `
+                <div class="result-card ${ground.type}">
+                    <span class="ground-tag ${ground.type}">${ground.ground} - ${ground.type === 'mandatory' ? 'Mandatory' : 'Discretionary'}</span>
+                    <h4 class="ground-title">${ground.title}</h4>
+                    <p class="ground-details">${ground.description}</p>
+                    <div class="notice-period">📅 Notice period: ${ground.noticePeriod}</div>
+                    <p style="margin-top: 0.75rem; font-size: 0.85rem; color: #8b8b8b;"><strong>Evidence needed:</strong> ${ground.evidence}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sterling Products | UK Tools for Landlords & Businesses</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 2rem;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #fff; }
+        .subtitle { color: #8b8b8b; margin-bottom: 3rem; }
+        .product-grid { display: grid; gap: 1.5rem; }
+        .product {
+            background: #ffffff10;
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .product h2 { color: #fff; margin-bottom: 0.5rem; font-size: 1.3rem; }
+        .product p { color: #8b8b8b; font-size: 0.95rem; }
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+        .tag-new { background: #51cf6620; color: #51cf66; }
+        .tag-popular { background: #4dabf720; color: #4dabf7; }
+        footer { text-align: center; margin-top: 3rem; color: #666; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇬🇧 Sterling Products</h1>
+        <p class="subtitle">UK tools for landlords, businesses, and individuals</p>
+        
+        <div class="product-grid">
+            <a href="/section8-checker/" class="product">
+                <h2>Section 8 Grounds Checker</h2>
+                <p>Find out which eviction grounds apply after Section 21 is abolished. Free checker for England landlords.</p>
+                <span class="tag tag-new">✨ NEW - Renters' Rights Act 2025</span>
+            </a>
+            
+            <a href="https://clawpinchybot.github.io/jobflow/" class="product">
+                <h2>JobFlow</h2>
+                <p>Track job applications, interviews, and follow-ups. Never miss an opportunity.</p>
+                <span class="tag tag-popular">🔥 Popular</span>
+            </a>
+            
+            <a href="https://clawpinchybot.github.io/landlord-tracker/" class="product">
+                <h2>UK Landlord Tracker</h2>
+                <p>Track properties, tenants, and compliance deadlines in one place.</p>
+            </a>
+        </div>
+        
+        <footer>
+            <p>Built by Sterling | <a href="mailto:sterling@example.com" style="color: #4dabf7;">Contact</a></p>
+        </footer>
+    </div>
+</body>
+</html>
