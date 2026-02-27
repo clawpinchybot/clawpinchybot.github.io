@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Should You Serve Section 21? | Renters' Rights Act 2026</title>
+    <meta name="description" content="Interactive tool to help UK landlords decide if they should serve Section 21 before the May 2026 deadline. 9 weeks left.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .countdown-banner {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        .countdown-banner h2 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .countdown-item {
+            text-align: center;
+        }
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .countdown-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        .question h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #3498db;
+        }
+        .option.selected {
+            background: rgba(52, 152, 219, 0.3);
+            border-color: #3498db;
+        }
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .result {
+            display: none;
+            text-align: center;
+        }
+        .result.active {
+            display: block;
+        }
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .result h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .result p {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .result-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .result-box h4 {
+            margin-bottom: 10px;
+            color: #f39c12;
+        }
+        .result-box ul {
+            padding-left: 20px;
+        }
+        .result-box li {
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        .disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            text-align: center;
+            margin-top: 30px;
+            line-height: 1.5;
+        }
+        .urgency-high {
+            color: #e74c3c;
+        }
+        .urgency-medium {
+            color: #f39c12;
+        }
+        .urgency-low {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="countdown-banner">
+            <h2>⏰ Section 21 Deadline Countdown</h2>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="weeks">9</div>
+                    <div class="countdown-label">WEEKS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">DAYS</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1>🏠 Should You Serve Section 21?</h1>
+            <p class="subtitle">Answer 5 questions to find out if you should act before the May 2026 deadline</p>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress" style="width: 0%"></div>
+            </div>
+
+            <div id="quiz">
+                <!-- Question 1 -->
+                <div class="question active" data-question="1">
+                    <h3>1. Are you happy with your current tenants continuing long-term?</h3>
+                    <div class="options">
+                        <div class="option" data-value="yes" onclick="selectOption(this, 1)">Yes, they're great tenants</div>
+                        <div class="option" data-value="no" onclick="selectOption(this, 1)">No, I have concerns</div>
+                        <div class="option" data-value="maybe" onclick="selectOption(this, 1)">Unsure / It depends</div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question" data-question="2">
+                    <h3>2. Might you need to sell the property or move back in within the next 2 years?</h3>
+                    <div class="options">
+                        <div class="option" data-value="yes" onclick="selectOption(this, 2)">Yes, this is possible</div>
+                        <div class="option" data-value="no" onclick="selectOption(this, 2)">No, I'm committed to renting</div>
+                        <div class="option" data-value="maybe" onclick="selectOption(this, 2)">Maybe, circumstances could change</div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question" data-question="3">
+                    <h3>3. Are you worried about potential rent arrears in the future?</h3>
+                    <div class="options">
+                        <div class="option" data-value="yes" onclick="selectOption(this, 3)">Yes, this concerns me</div>
+                        <div class="option" data-value="no" onclick="selectOption(this, 3)">No, not a concern</div>
+                        <div class="option" data-value="maybe" onclick="selectOption(this, 3)">Somewhat concerned</div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question" data-question="4">
+                    <h3>4. Do you have all required documents served correctly?</h3>
+                    <div class="options">
+                        <div class="option" data-value="yes" onclick="selectOption(this, 4)">Yes - EPC, Gas Safety, How to Rent guide, Deposit protected</div>
+                        <div class="option" data-value="no" onclick="selectOption(this, 4)">No or Not sure</div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question" data-question="5">
+                    <h3>5. Would you struggle with the new Section 8 eviction process?</h3>
+                    <div class="options">
+                        <div class="option" data-value="yes" onclick="selectOption(this, 5)">Yes, I prefer the simplicity of Section 21</div>
+                        <div class="option" data-value="no" onclick="selectOption(this, 5)">No, I'm comfortable proving grounds</div>
+                        <div class="option" data-value="maybe" onclick="selectOption(this, 5)">I don't know the new process</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result" id="result">
+                <div class="result-icon" id="result-icon">⚠️</div>
+                <h2 id="result-title">Your Recommendation</h2>
+                <p id="result-text"></p>
+                
+                <div class="result-box" id="action-box">
+                    <h4>📋 Recommended Actions</h4>
+                    <ul id="action-list"></ul>
+                </div>
+
+                <a href="https://gumroad.com" class="cta-button" id="cta-button">
+                    Get Full Transition Checklist →
+                </a>
+            </div>
+        </div>
+
+        <p class="disclaimer">
+            ⚠️ This tool provides general guidance only and does not constitute legal advice. 
+            Landlord-tenant law is complex. Consult a solicitor or the NRLA for your specific situation.
+            Penalties for non-compliance can reach £7,000.
+        </p>
+    </div>
+
+    <script>
+        const answers = {};
+        const totalQuestions = 5;
+
+        // Countdown timer
+        function updateCountdown() {
+            const deadline = new Date('2026-04-30T23:59:59');
+            const now = new Date();
+            const diff = deadline - now;
+
+            const weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+
+            document.getElementById('weeks').textContent = Math.max(0, weeks);
+            document.getElementById('days').textContent = Math.max(0, days);
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        function selectOption(element, questionNum) {
+            // Remove selected class from siblings
+            const siblings = element.parentElement.querySelectorAll('.option');
+            siblings.forEach(sib => sib.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Store answer
+            answers[questionNum] = element.dataset.value;
+
+            // Update progress
+            const progress = (Object.keys(answers).length / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+
+            // Move to next question after delay
+            setTimeout(() => {
+                if (questionNum < totalQuestions) {
+                    document.querySelector(`[data-question="${questionNum}"]`).classList.remove('active');
+                    document.querySelector(`[data-question="${questionNum + 1}"]`).classList.add('active');
+                } else {
+                    showResult();
+                }
+            }, 300);
+        }
+
+        function showResult() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').classList.add('active');
+
+            // Calculate recommendation
+            let score = 0;
+            if (answers[1] === 'no' || answers[1] === 'maybe') score += 2;
+            if (answers[2] === 'yes' || answers[2] === 'maybe') score += 2;
+            if (answers[3] === 'yes' || answers[3] === 'maybe') score += 2;
+            if (answers[4] === 'no') score += 1;
+            if (answers[5] === 'yes' || answers[5] === 'maybe') score += 2;
+
+            const resultIcon = document.getElementById('result-icon');
+            const resultTitle = document.getElementById('result-title');
+            const resultText = document.getElementById('result-text');
+            const actionList = document.getElementById('action-list');
+
+            if (score >= 6) {
+                // HIGH URGENCY
+                resultIcon.textContent = '🚨';
+                resultTitle.innerHTML = '<span class="urgency-high">HIGH URGENCY: Serve Section 21 Now</span>';
+                resultText.textContent = 'Based on your answers, you should strongly consider serving Section 21 before the April 30th deadline. After this date, you\'ll need to prove fault-based grounds for eviction, which is harder and more expensive.';
+                actionList.innerHTML = `
+                    <li>Check all required documents are served (EPC, Gas Safety, How to Rent guide)</li>
+                    <li>Verify deposit is protected in a scheme</li>
+                    <li>Download Form 6A (Section 21 notice) from GOV.UK</li>
+                    <li>Serve notice by April 30, 2026 at the latest</li>
+                    <li>Keep proof of service</li>
+                    <li>Get the full transition checklist for step-by-step guidance</li>
+                `;
+            } else if (score >= 3) {
+                // MEDIUM URGENCY
+                resultIcon.textContent = '⚠️';
+                resultTitle.innerHTML = '<span class="urgency-medium">CONSIDER SERVING: You Have Some Risk Factors</span>';
+                resultText.textContent = 'You have some factors that suggest serving Section 21 could be beneficial. While not urgent, having this option available gives you flexibility if circumstances change.';
+                actionList.innerHTML = `
+                    <li>Review your current tenancy documentation</li>
+                    <li>Consider if you might need possession in the next 2 years</li>
+                    <li>Speak to a legal professional about your specific situation</li>
+                    <li>Download the transition checklist to understand your options</li>
+                `;
+            } else {
+                // LOW URGENCY
+                resultIcon.textContent = '✅';
+                resultTitle.innerHTML = '<span class="urgency-low">LOW URGENCY: You May Not Need to Act</span>';
+                resultText.textContent = 'Based on your answers, you seem well-positioned for the new system. However, make sure you understand the new rules coming on May 1st.';
+                actionList.innerHTML = `
+                    <li>Familiarise yourself with Section 8 grounds</li>
+                    <li>Join the landlord ombudsman scheme (required from May 1st)</li>
+                    <li>Prepare the Information Sheet for tenants (due by May 31st)</li>
+                    <li>Download the transition checklist to stay compliant</li>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
