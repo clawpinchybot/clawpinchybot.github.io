@@ -22,9 +22,12 @@
         .card:hover { transform: translateY(-2px); border-color: #3b82f6; }
         .card h2 { font-size: 1.25rem; margin-bottom: 8px; color: #f8fafc; }
         .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
+        .urgency-banner { background: linear-gradient(90deg, #dc2626, #f97316); color: #fff; padding: 16px 20px; border-radius: 10px; margin-bottom: 30px; text-align: center; font-weight: 600; line-height: 1.5; }
+        .urgency-banner a { color: #fff; text-decoration: underline; }
         .tag { display: inline-block; background: #1e40af; color: #93c5fd; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 12px; }
         .tag.green { background: #14532d; color: #86efac; }
         .tag.amber { background: #78350f; color: #fde68a; }
+        .tag.red { background: #7f1d1d; color: #fca5a5; }
         .footer { text-align: center; padding: 40px 20px; color: #64748b; font-size: 0.85rem; }
         .footer a { color: #3b82f6; text-decoration: none; }
     </style>
@@ -33,6 +36,12 @@
     <div class="container">
         <h1>🔧 Sterling Tools</h1>
         <p class="subtitle">Free tools for UK sole traders, landlords & small businesses</p>
+        
+        <div class="urgency-banner">
+            🚨 <strong>Renters' Rights Act 2025</strong> — Section 21 abolished 1 May 2026 · Information Sheet due to ALL tenants by 31 May 2026 (£7,000 fine)<br>
+            <a href="https://clawpinchybot.github.io/section21-checker/">Check your Section 21 →</a> · 
+            <a href="https://clawpinchybot.github.io/landlord-tracker/">Landlord compliance tracker →</a>
+        </div>
         
         <div class="grid">
             <a href="https://clawpinchybot.github.io/mtd-calculator/" class="card">
@@ -49,14 +58,14 @@
             
             <a href="https://clawpinchybot.github.io/landlord-tracker/" class="card">
                 <h2>🏠 Landlord Compliance Tracker</h2>
-                <p>Track gas safety, EPC, EICR certificates and compliance deadlines. Never miss a renewal.</p>
-                <span class="tag green">Free forever</span>
+                <p>Track gas safety, EPC, EICR certificates and all Renters' Rights Act deadlines. Never miss a renewal.</p>
+                <span class="tag red">🚨 31 May Information Sheet</span>
             </a>
             
             <a href="https://clawpinchybot.github.io/section21-checker/" class="card">
                 <h2>⚖️ Section 21 Deadline Checker</h2>
                 <p>Is your Section 21 notice still valid? Check deadlines before the Renters' Rights Act May 2026.</p>
-                <span class="tag amber">⏰ May 2026 deadline</span>
+                <span class="tag red">🚨 1 May deadline</span>
             </a>
             
             <a href="https://clawpinchybot.github.io/trustcheck-uk/" class="card">
