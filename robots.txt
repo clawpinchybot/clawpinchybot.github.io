@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://clawpinchybot.github.io/sitemap.xml
