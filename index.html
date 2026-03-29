@@ -3,75 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sterling Products | UK Tools for Landlords & Businesses</title>
+    <title>Sterling Tools - Free UK Business & Landlord Tools</title>
+    <meta name="description" content="Free tools for UK sole traders, landlords, and small businesses. MTD readiness calculator, landlord compliance tracker, and more.">
+    <link rel="canonical" href="https://clawpinchybot.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sterling Tools - Free UK Business & Landlord Tools">
+    <meta property="og:description" content="Free tools for UK sole traders, landlords, and small businesses. MTD readiness, landlord compliance, and more.">
+    <meta property="og:url" content="https://clawpinchybot.github.io/">
+    <meta name="twitter:card" content="summary">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            color: #e0e0e0;
-            padding: 2rem;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #fff; }
-        .subtitle { color: #8b8b8b; margin-bottom: 3rem; }
-        .product-grid { display: grid; gap: 1.5rem; }
-        .product {
-            background: #ffffff10;
-            border-radius: 12px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .product:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        }
-        .product h2 { color: #fff; margin-bottom: 0.5rem; font-size: 1.3rem; }
-        .product p { color: #8b8b8b; font-size: 0.95rem; }
-        .tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 1rem;
-        }
-        .tag-new { background: #51cf6620; color: #51cf66; }
-        .tag-popular { background: #4dabf720; color: #4dabf7; }
-        footer { text-align: center; margin-top: 3rem; color: #666; font-size: 0.85rem; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2.5rem; margin-bottom: 8px; color: #f8fafc; }
+        .subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; display: block; }
+        .card:hover { transform: translateY(-2px); border-color: #3b82f6; }
+        .card h2 { font-size: 1.25rem; margin-bottom: 8px; color: #f8fafc; }
+        .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
+        .tag { display: inline-block; background: #1e40af; color: #93c5fd; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 12px; }
+        .tag.green { background: #14532d; color: #86efac; }
+        .tag.amber { background: #78350f; color: #fde68a; }
+        .footer { text-align: center; padding: 40px 20px; color: #64748b; font-size: 0.85rem; }
+        .footer a { color: #3b82f6; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🇬🇧 Sterling Products</h1>
-        <p class="subtitle">UK tools for landlords, businesses, and individuals</p>
+        <h1>🔧 Sterling Tools</h1>
+        <p class="subtitle">Free tools for UK sole traders, landlords & small businesses</p>
         
-        <div class="product-grid">
-            <a href="/section8-checker/" class="product">
-                <h2>Section 8 Grounds Checker</h2>
-                <p>Find out which eviction grounds apply after Section 21 is abolished. Free checker for England landlords.</p>
-                <span class="tag tag-new">✨ NEW - Renters' Rights Act 2025</span>
+        <div class="grid">
+            <a href="https://clawpinchybot.github.io/mtd-calculator/" class="card">
+                <h2>📊 MTD Readiness Calculator</h2>
+                <p>Check if you need to comply with Making Tax Digital. Calculate your deadline and find the right software.</p>
+                <span class="tag amber">⏰ April 2026 deadline</span>
             </a>
             
-            <a href="https://clawpinchybot.github.io/jobflow/" class="product">
-                <h2>JobFlow</h2>
-                <p>Track job applications, interviews, and follow-ups. Never miss an opportunity.</p>
-                <span class="tag tag-popular">🔥 Popular</span>
+            <a href="https://clawpinchybot.github.io/jobflow/" class="card">
+                <h2>📋 JobFlow</h2>
+                <p>Simple job tracker for UK sole traders and tradesmen. Track jobs, clients, invoices and earnings.</p>
+                <span class="tag green">Free forever</span>
             </a>
             
-            <a href="https://clawpinchybot.github.io/landlord-tracker/" class="product">
-                <h2>UK Landlord Tracker</h2>
-                <p>Track properties, tenants, and compliance deadlines in one place.</p>
+            <a href="https://clawpinchybot.github.io/landlord-tracker/" class="card">
+                <h2>🏠 Landlord Compliance Tracker</h2>
+                <p>Track gas safety, EPC, EICR certificates and compliance deadlines. Never miss a renewal.</p>
+                <span class="tag green">Free forever</span>
+            </a>
+            
+            <a href="https://clawpinchybot.github.io/section21-checker/" class="card">
+                <h2>⚖️ Section 21 Deadline Checker</h2>
+                <p>Is your Section 21 notice still valid? Check deadlines before the Renters' Rights Act May 2026.</p>
+                <span class="tag amber">⏰ May 2026 deadline</span>
+            </a>
+            
+            <a href="https://clawpinchybot.github.io/trustcheck-uk/" class="card">
+                <h2>🔍 TrustCheck UK</h2>
+                <p>Free tool to check UK tradesmen credentials, Companies House records, and CCJs before hiring.</p>
+                <span class="tag">New</span>
             </a>
         </div>
-        
-        <footer>
-            <p>Built by Sterling | <a href="mailto:sterling@example.com" style="color: #4dabf7;">Contact</a></p>
-        </footer>
+    </div>
+    
+    <div class="footer">
+        <p>All tools are free to use. Built for the UK.</p>
     </div>
 </body>
 </html>
