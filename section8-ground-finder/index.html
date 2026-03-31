@@ -183,6 +183,40 @@
         }
         footer a { color: #e94560; }
     </style>
+
+    <!-- FAQ Schema for Google rich snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which Section 8 ground should I use for rent arrears?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For rent arrears, Ground 8 (mandatory possession for 2+ months arrears) is the strongest. The Renters' Rights Act also adds a 'repeated serious arrears' ground for when arrears reach 2 months on two or more occasions within 3 years. Grounds 10 and 11 are discretionary alternatives."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between mandatory and discretionary Section 8 grounds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mandatory grounds (like Ground 8 for rent arrears, Ground 7A for illegal activity) mean the court MUST grant possession if proven. Discretionary grounds (like Ground 10, 11 for arrears, Ground 12 for breach) mean the court decides based on circumstances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I evict a tenant to sell my property after Section 21 ends?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Renters' Rights Act introduces a new ground for possession when the landlord intends to sell the property. The tenant must be given notice and the court will consider the circumstances. This is a discretionary ground, not mandatory."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="container">
