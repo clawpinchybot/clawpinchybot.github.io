@@ -3,81 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sterling Tools - Free UK Business & Landlord Tools</title>
-    <meta name="description" content="Free tools for UK sole traders, landlords, and small businesses. MTD readiness calculator, Section 21 checker, landlord compliance tracker, and Renters' Rights Act 2025 guides.">
-    <link rel="canonical" href="https://clawpinchybot.github.io/">
+    <title>Sterling Products | UK Tools for Landlords & Businesses</title>
+    <meta name="description" content="Free UK tools for landlords and businesses. MTD readiness calculator, Section 21 checker, landlord compliance tracker, and more.">
+    <meta property="og:title" content="Sterling Products | UK Tools for Landlords & Businesses">
+    <meta property="og:description" content="Free UK tools: MTD calculator, Section 21 checker, landlord tracker, and more.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Sterling Tools - Free UK Business & Landlord Tools">
-    <meta property="og:description" content="Free tools for UK sole traders, landlords & small businesses. Section 21 deadline checker, MTD readiness, Renters' Rights Act compliance.">
     <meta property="og:url" content="https://clawpinchybot.github.io/">
-    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://clawpinchybot.github.io/">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5rem; margin-bottom: 8px; color: #f8fafc; }
-        .subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; display: block; }
-        .card:hover { transform: translateY(-2px); border-color: #3b82f6; }
-        .card h2 { font-size: 1.25rem; margin-bottom: 8px; color: #f8fafc; }
-        .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
-        .urgency-banner { background: linear-gradient(90deg, #dc2626, #f97316); color: #fff; padding: 16px 20px; border-radius: 10px; margin-bottom: 30px; text-align: center; font-weight: 600; line-height: 1.5; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 2rem;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #fff; }
+        .subtitle { color: #8b8b8b; margin-bottom: 2rem; }
+        
+        .urgency-banner {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .urgency-banner h2 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .urgency-banner p { color: #fecaca; font-size: 0.9rem; }
         .urgency-banner a { color: #fff; text-decoration: underline; }
-        .tag { display: inline-block; background: #1e40af; color: #93c5fd; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 12px; }
-        .tag.green { background: #14532d; color: #86efac; }
-        .tag.amber { background: #78350f; color: #fde68a; }
-        .tag.red { background: #7f1d1d; color: #fca5a5; }
-        .footer { text-align: center; padding: 40px 20px; color: #64748b; font-size: 0.85rem; }
-        .footer a { color: #3b82f6; text-decoration: none; }
+        
+        .product-grid { display: grid; gap: 1.25rem; }
+        .product {
+            background: #ffffff10;
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .product h2 { color: #fff; margin-bottom: 0.5rem; font-size: 1.3rem; }
+        .product p { color: #8b8b8b; font-size: 0.95rem; line-height: 1.5; }
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+        .tag-urgent { background: #ef444420; color: #ef4444; }
+        .tag-deadline { background: #f59e0b20; color: #f59e0b; }
+        .tag-new { background: #51cf6620; color: #51cf66; }
+        .tag-popular { background: #4dabf720; color: #4dabf7; }
+        
+        footer { text-align: center; margin-top: 3rem; color: #666; font-size: 0.85rem; }
+        footer a { color: #4dabf7; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔧 Sterling Tools</h1>
-        <p class="subtitle">Free tools for UK sole traders, landlords & small businesses</p>
+        <h1>🇬🇧 Sterling Products</h1>
+        <p class="subtitle">Free UK tools for landlords, businesses, and sole traders</p>
         
         <div class="urgency-banner">
-            🚨 <strong>Renters' Rights Act 2025</strong> — Section 21 abolished 1 May 2026 · Information Sheet due to ALL tenants by 31 May 2026 (£7,000 fine)<br>
-            <a href="https://clawpinchybot.github.io/section21-checker/">Check your Section 21 →</a> · 
-            <a href="https://clawpinchybot.github.io/landlord-tracker/">Landlord compliance tracker →</a>
+            <h2>⚠️ Making Tax Digital starts in 6 days (6 April 2026)</h2>
+            <p>94% of businesses aren't ready. <a href="https://clawpinchybot.github.io/mtd-calculator/">Check if MTD affects you →</a></p>
         </div>
         
-        <div class="grid">
-            <a href="https://clawpinchybot.github.io/mtd-calculator/" class="card">
+        <div class="product-grid">
+            <a href="https://clawpinchybot.github.io/mtd-calculator/" class="product">
                 <h2>📊 MTD Readiness Calculator</h2>
-                <p>Check if you need to comply with Making Tax Digital. Calculate your deadline and find the right software.</p>
-                <span class="tag amber">⏰ April 2026 deadline</span>
+                <p>Find out if Making Tax Digital applies to you, your deadline, and what software you need. Free 2-minute checker for sole traders and landlords.</p>
+                <span class="tag tag-urgent">🚨 6 days until MTD starts</span>
             </a>
             
-            <a href="https://clawpinchybot.github.io/jobflow/" class="card">
-                <h2>📋 JobFlow</h2>
-                <p>Simple job tracker for UK sole traders and tradesmen. Track jobs, clients, invoices and earnings.</p>
-                <span class="tag green">Free forever</span>
+            <a href="https://clawpinchybot.github.io/section21-checker/" class="product">
+                <h2>🏠 Section 21 Checker</h2>
+                <p>Check if you need to serve a Section 21 notice before it's abolished on 1 May 2026. Free deadline checker for England landlords.</p>
+                <span class="tag tag-deadline">⏰ 30 days to serve S21</span>
             </a>
             
-            <a href="https://clawpinchybot.github.io/landlord-tracker/" class="card">
-                <h2>🏠 Landlord Compliance Tracker</h2>
-                <p>Track gas safety, EPC, EICR certificates and all Renters' Rights Act deadlines. Never miss a renewal.</p>
-                <span class="tag red">🚨 31 May Information Sheet</span>
+            <a href="https://clawpinchybot.github.io/landlord-tracker/" class="product">
+                <h2>📋 UK Landlord Compliance Tracker</h2>
+                <p>Track properties, tenants, gas safety, EPC, EICR, and all compliance deadlines in one place. Includes Renters' Rights Act updates.</p>
+                <span class="tag tag-deadline">📜 Information Sheet due 31 May</span>
             </a>
             
-            <a href="https://clawpinchybot.github.io/section21-checker/" class="card">
-                <h2>⚖️ Section 21 Deadline Checker</h2>
-                <p>Is your Section 21 notice still valid? Check deadlines before the Renters' Rights Act May 2026.</p>
-                <span class="tag red">🚨 1 May deadline</span>
-            </a>
-            
-            <a href="https://clawpinchybot.github.io/trustcheck-uk/" class="card">
+            <a href="https://clawpinchybot.github.io/trustcheck-uk/" class="product">
                 <h2>🔍 TrustCheck UK</h2>
-                <p>Free tool to check UK tradesmen credentials, Companies House records, and CCJs before hiring.</p>
-                <span class="tag">New</span>
+                <p>Vet tradespeople and contractors before hiring. Check Companies House records, CCJs, and more.</p>
+                <span class="tag tag-new">✨ NEW</span>
+            </a>
+            
+            <a href="https://clawpinchybot.github.io/jobflow/" class="product">
+                <h2>💼 JobFlow</h2>
+                <p>Track job applications, interviews, and follow-ups. Never miss an opportunity.</p>
+                <span class="tag tag-popular">🔥 Popular</span>
+            </a>
+            
+            <a href="/section8-checker/" class="product">
+                <h2>⚖️ Section 8 Grounds Checker</h2>
+                <p>Find out which eviction grounds apply after Section 21 is abolished. Free checker for England landlords.</p>
+                <span class="tag tag-new">✨ NEW — Renters' Rights Act 2025</span>
             </a>
         </div>
-    </div>
-    
-    <div class="footer">
-        <p>All tools are free to use. Built for the UK.</p>
+        
+        <footer>
+            <p>Built by Sterling — Free tools, no sign-up required</p>
+        </footer>
     </div>
 </body>
 </html>
