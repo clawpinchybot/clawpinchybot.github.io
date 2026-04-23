@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sterling Products | UK Tools for Landlords & Businesses</title>
-    <meta name="description" content="Free UK tools for landlords and businesses. MTD readiness calculator, Section 21 checker, landlord compliance tracker, and more.">
+    <meta name="description" content="Free UK tools for landlords and businesses. Section 21 deadline checker, Renters' Rights Act tracker, MTD calculator, and more. Updated April 2026.">
     <meta property="og:title" content="Sterling Products | UK Tools for Landlords & Businesses">
-    <meta property="og:description" content="Free UK tools: MTD calculator, Section 21 checker, landlord tracker, and more.">
+    <meta property="og:description" content="Free UK tools: Section 21 checker, RRA landlord tracker, MTD calculator, and more. Updated April 2026.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://clawpinchybot.github.io/">
     <link rel="canonical" href="https://clawpinchybot.github.io/">
@@ -73,21 +73,21 @@
         <p class="subtitle">Free UK tools for landlords, businesses, and sole traders</p>
         
         <div class="urgency-banner">
-            <h2>⚠️ Making Tax Digital starts in <span id="mtdCountdown">--</span> (6 April 2026)</h2>
-            <p>94% of businesses aren't ready. <a href="https://clawpinchybot.github.io/mtd-calculator/">Check if MTD affects you →</a></p>
+            <h2 id="mainBanner">⚠️ Renters' Rights Act starts in <span id="rraCountdown">--</span> (1 May 2026)</h2>
+            <p id="mainBannerSub">Section 21 abolished, new tenant rights. <a href="https://clawpinchybot.github.io/section21-checker/">Check if you need to act →</a></p>
         </div>
         
         <div class="product-grid">
             <a href="https://clawpinchybot.github.io/mtd-calculator/" class="product">
                 <h2>📊 MTD Readiness Calculator</h2>
                 <p>Find out if Making Tax Digital applies to you, your deadline, and what software you need. Free 2-minute checker for sole traders and landlords.</p>
-                <span class="tag tag-urgent" id="mtdTag">🚨 MTD starts soon</span>
+                <span class="tag tag-urgent">🔴 MTD NOW IN EFFECT</span>
             </a>
             
             <a href="https://clawpinchybot.github.io/section21-checker/" class="product">
                 <h2>🏠 Section 21 Checker</h2>
                 <p>Check if you need to serve a Section 21 notice before it's abolished on 1 May 2026. Free deadline checker for England landlords.</p>
-                <span class="tag tag-deadline">⏰ 30 days to serve S21</span>
+                <span class="tag tag-deadline" id="s21Tag">⏰ Last day to serve S21: 30 April</span>
             </a>
             
             <a href="https://clawpinchybot.github.io/landlord-tracker/" class="product">
@@ -123,7 +123,7 @@
             <a href="https://clawpinchybot.github.io/s21-decision-helper/" class="product">
                 <h2>🤔 Should You Serve a Section 21?</h2>
                 <p>Not sure whether to serve a Section 21 before the deadline? This decision helper walks you through the pros, cons, and risks.</p>
-                <span class="tag tag-deadline">⏰ Decide before 30 April</span>
+                <span class="tag tag-deadline" id="s21decTag">⏰ Decide before 30 April</span>
             </a>
         </div>
         
@@ -132,28 +132,47 @@
         </footer>
         
         <script>
-            // Dynamic MTD countdown
-            function updateMTDCountdown() {
-                const deadline = new Date('2026-04-06T00:00:00');
+            // Dynamic RRA countdown (1 May 2026)
+            function updateRRACountdown() {
+                const deadline = new Date('2026-05-01T00:00:00+01:00'); // midnight BST
                 const now = new Date();
                 const diff = deadline - now;
-                const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
-                const el = document.getElementById('mtdCountdown');
-                const tag = document.getElementById('mtdTag');
-                if (days > 1) {
+                const el = document.getElementById('rraCountdown');
+                const banner = document.getElementById('mainBanner');
+                const sub = document.getElementById('mainBannerSub');
+                if (diff > 0) {
+                    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
                     el.textContent = days + ' days';
-                    tag.textContent = '🚨 ' + days + ' days until MTD starts';
-                } else if (days === 1) {
-                    el.textContent = '1 day';
-                    tag.textContent = '🚨 MTD starts TOMORROW';
+                    banner.textContent = '⚠️ Renters\' Rights Act starts in ' + days + ' days (1 May 2026)';
+                    sub.innerHTML = 'Section 21 abolished, new tenant rights. <a href="https://clawpinchybot.github.io/section21-checker/">Check if you need to act →</a>';
                 } else {
-                    el.textContent = 'TODAY';
-                    tag.textContent = '🚨 MTD starts TODAY';
-                    document.querySelector('.urgency-banner h2').textContent = '🚨 Making Tax Digital starts TODAY (6 April 2026)';
+                    banner.textContent = '📜 Renters\' Rights Act is NOW IN EFFECT';
+                    sub.innerHTML = 'Section 21 abolished, new tenancy rules apply. <a href="https://clawpinchybot.github.io/landlord-tracker/">Track your compliance →</a>';
+                    el.remove();
                 }
             }
-            updateMTDCountdown();
-            setInterval(updateMTDCountdown, 60000);
+
+            // Dynamic S21 countdown (30 April 2026, 4:30pm BST)
+            function updateS21Countdown() {
+                const deadline = new Date('2026-04-30T16:30:00+01:00');
+                const now = new Date();
+                const diff = deadline - now;
+                const s21Tag = document.getElementById('s21Tag');
+                const s21decTag = document.getElementById('s21decTag');
+                if (diff > 0) {
+                    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    s21Tag.textContent = '⏰ ' + days + ' days to serve S21 (deadline 30 April)';
+                    s21decTag.textContent = '⏰ ' + days + ' days to decide';
+                } else {
+                    s21Tag.textContent = '🚫 Section 21 abolished';
+                    s21Tag.className = 'tag tag-urgent';
+                    s21decTag.textContent = '🚫 Section 21 abolished';
+                    s21decTag.className = 'tag tag-urgent';
+                }
+            }
+            updateRRACountdown();
+            updateS21Countdown();
+            setInterval(function() { updateRRACountdown(); updateS21Countdown(); }, 60000);
         </script>
     </div>
 </body>
