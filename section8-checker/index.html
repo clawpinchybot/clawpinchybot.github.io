@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Section 8 Grounds Checker | Which Eviction Grounds Apply?</title>
-    <meta name="description" content="Find out which Section 8 eviction grounds apply to your situation after the Renters' Rights Act 2025. Free checker for England landlords.">
+    <meta name="description" content="Find which Section 8 eviction grounds apply — includes new RRA grounds (Ground 1A, 1B, 4A, Repeated Serious Arrears). Free UK landlord checker. Updated April 2026.">
     <link rel="canonical" href="https://clawpinchybot.github.io/section8-checker/">
     <meta property="og:title" content="Section 8 Grounds Checker | Which Eviction Grounds Apply?">
     <meta property="og:description" content="Free tool: find out which Section 8 eviction grounds apply after Section 21 is abolished in May 2026.">
@@ -44,6 +44,7 @@
       ]
     }
     </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Section 8 Grounds Checker","description":"Free tool to check which Section 8 eviction grounds apply to your situation under the Renters' Rights Act 2025.","url":"https://clawpinchybot.github.io/section8-checker/","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
     <style>
         * {
             margin: 0;
@@ -320,6 +321,14 @@
             "@type": "Answer",
             "text": "Yes. After Section 21 is abolished on 1 May 2026, landlords must use Section 8 grounds which require proving a specific reason such as rent arrears, anti-social behaviour, breach of tenancy, or intention to sell. There is no longer a 'no-fault' eviction option."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What new Section 8 grounds does the Renters' Rights Act 2025 add?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The RRA adds four key new grounds: Ground 1A (selling property — discretionary), Ground 1B (landlord or family occupation — mandatory, replaces old Ground 1), Ground 4A (student HMO redevelopment — mandatory, preliminary notice by 31 May 2026), and a new 'Repeated Serious Arrears' ground (mandatory — applies when tenant is 2+ months behind on two or more occasions within 3 years, closing the Ground 8 loophole)."
+          }
         }
       ]
     }
@@ -506,22 +515,39 @@
                 evidence: "Court conviction or injunction"
             },
             
-            // LANDLORD GROUNDS (owner occupation)
-            owner_occupy_6mo: {
-                ground: "Ground 1",
+            repeated_serious_arrears: {
+                ground: "Repeated Serious Arrears (New)",
                 type: "mandatory",
-                title: "Owner Occupation (6+ months tenancy)",
-                description: "You want to live in the property as your main home. Tenancy must have lasted 6+ months.",
+                title: "Repeated Serious Rent Arrears",
+                description: "NEW RRA: Tenant has been 2+ months behind on rent on two or more occasions within a 3-year period. Closes the Ground 8 loophole where tenants pay just enough to reset the clock. Applies to arrears on or after 1 May 2026.",
+                noticePeriod: "2 weeks",
+                evidence: "Rent account history showing 2+ instances of 2+ month arrears within 3 years"
+            },
+            
+            // LANDLORD GROUNDS (owner occupation)
+            owner_occupy_1b: {
+                ground: "Ground 1B (New RRA)",
+                type: "mandatory",
+                title: "Landlord/Family Occupation",
+                description: "NEW RRA (replaces Ground 1): You or a family member wants to live in the property as your main home. No prior written notice clause needed. Applies to tenancies from 1 May 2026.",
+                noticePeriod: "2 months",
+                evidence: "Proof you own the property, statement of intention to occupy"
+            },
+            owner_occupy_6mo: {
+                ground: "Ground 1 (Pre-RRA)",
+                type: "mandatory",
+                title: "Owner Occupation — Pre-RRA (6+ months tenancy)",
+                description: "You want to live in the property as your main home. Tenancy must have lasted 6+ months. Still applies to tenancies started before 1 May 2026 where notice is served before transition.",
                 noticePeriod: "2 months",
                 evidence: "Proof you own the property, statement of intention"
             },
-            owner_occupy_new: {
-                ground: "Ground 1A (New)",
-                type: "mandatory",
-                title: "Spouse/Partner Moving In",
-                description: "NEW: You want your spouse, civil partner, or partner to live there as their main home.",
+            ground_1a_selling: {
+                ground: "Ground 1A (New RRA)",
+                type: "discretionary",
+                title: "Selling Property",
+                description: "NEW RRA: You intend to sell the property with vacant possession. Discretionary ground — court decides based on circumstances. Applies to tenancies from 1 May 2026.",
                 noticePeriod: "2 months",
-                evidence: "Proof of relationship, statement of intention"
+                evidence: "Evidence of intention to sell (estate agent instruction, EPC, etc.)"
             },
             family_12mo: {
                 ground: "Ground 2",
@@ -541,16 +567,16 @@
                 noticePeriod: "2 weeks",
                 evidence: "Proof property was let as student accommodation"
             },
+            student_hmo_redevelopment: {
+                ground: "Ground 4A (New RRA)",
+                type: "mandatory",
+                title: "Student HMO Redevelopment",
+                description: "NEW RRA: You intend to redevelop a student HMO. Must serve preliminary notice by 31 May 2026. Possession notice must be served between 1 May and 30 July 2026 with 2 months' notice (reduced from usual 4 months).",
+                noticePeriod: "2 months (1 May–31 Jul 2026 only)",
+                evidence: "Preliminary notice served by 31 May 2026, redevelopment plans"
+            },
             
-            // SELL
-            sell_6mo: {
-                ground: "Ground 6A",
-                type: "discretionary",
-                title: "Selling Property",
-                description: "You intend to sell the property with vacant possession. Tenancy must be 6+ months.",
-                noticePeriod: "2 months",
-                evidence: "Evidence of intention to sell (estate agent listing, etc.)"
-            }
+            // SELL - now covered by ground_1a_selling above
         };
         
         // Show/hide conditional questions
@@ -588,6 +614,8 @@
                 } else if (rentAmount === '1month') {
                     applicableGrounds.push(grounds.rent_3months_new);
                 }
+                // Always show repeated serious arrears for rent arrears cases
+                applicableGrounds.push(grounds.repeated_serious_arrears);
             }
             
             if (selectedReasons.includes('antisocial')) {
@@ -607,13 +635,16 @@
             }
             
             if (selectedReasons.includes('move_in')) {
+                // RRA Ground 1B replaces old Ground 1 — no 6-month minimum
+                applicableGrounds.push(grounds.owner_occupy_1b);
+                // Pre-RRA Ground 1 still available for tenancies before May 2026
                 if (tenancyLength !== 'under6') {
                     applicableGrounds.push(grounds.owner_occupy_6mo);
                 }
-                applicableGrounds.push(grounds.owner_occupy_new);
             }
             
             if (selectedReasons.includes('family')) {
+                applicableGrounds.push(grounds.owner_occupy_1b);
                 if (tenancyLength === 'over12') {
                     applicableGrounds.push(grounds.family_12mo);
                 }
@@ -621,12 +652,12 @@
             
             if (selectedReasons.includes('student')) {
                 applicableGrounds.push(grounds.student_holiday);
+                applicableGrounds.push(grounds.student_hmo_redevelopment);
             }
             
             if (selectedReasons.includes('sell')) {
-                if (tenancyLength !== 'under6') {
-                    applicableGrounds.push(grounds.sell_6mo);
-                }
+                // RRA Ground 1A for selling (discretionary)
+                applicableGrounds.push(grounds.ground_1a_selling);
             }
             
             // Display results
