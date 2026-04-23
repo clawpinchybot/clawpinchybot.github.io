@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Section 8 Ground Finder | UK Landlord Tool</title>
-    <meta name="description" content="Free interactive tool to help UK landlords identify which Section 8 grounds apply to their situation. Required after Section 21 ends in May 2026.">
+    <title>Section 8 Ground Finder | New RRA Grounds | UK Landlord Tool</title>
+    <meta name="description" content="Free interactive tool to find which Section 8 eviction grounds apply. Includes new RRA grounds (Ground 1A selling, 1B occupation, 4A student HMO). Updated April 2026.">
     <link rel="canonical" href="https://clawpinchybot.github.io/section8-ground-finder/">
-    <meta property="og:title" content="Section 8 Ground Finder | UK Landlord Tool">
-    <meta property="og:description" content="Free interactive tool: identify which Section 8 eviction grounds apply after Section 21 ends May 2026.">
+    <meta property="og:title" content="Section 8 Ground Finder | New RRA Grounds Included | UK Landlord Tool">
+    <meta property="og:description" content="Free tool: find Section 8 grounds including new RRA Ground 1A (selling), 1B (occupation), 4A (student HMO). Section 21 ends May 2026.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://clawpinchybot.github.io/section8-ground-finder/">
 
@@ -36,6 +36,7 @@
       ]
     }
     </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Section 8 Ground Finder","description":"Free tool to find the right Section 8 eviction ground, including new RRA grounds: Ground 1A (selling), 1B (occupation), 4A (student HMO), repeated serious arrears.","url":"https://clawpinchybot.github.io/section8-ground-finder/","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}}</script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -211,7 +212,23 @@
           "name": "Can I evict a tenant to sell my property after Section 21 ends?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The Renters' Rights Act introduces a new ground for possession when the landlord intends to sell the property. The tenant must be given notice and the court will consider the circumstances. This is a discretionary ground, not mandatory."
+            "text": "Yes. The Renters' Rights Act introduces Ground 1A for landlords who intend to sell. This is a discretionary ground — the court will consider the tenant's circumstances. You must genuinely intend to sell and cannot re-let to another tenant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What new Section 8 grounds does the Renters' Rights Act 2025 add?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The RRA adds: Ground 1A (selling the property, discretionary), Ground 1B (landlord/family occupation, discretionary, replaces old Ground 1), Ground 4A (student HMO redevelopment, mandatory), and a repeated serious arrears ground (mandatory, for 2+ months arrears on two occasions within 3 years)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the deadline for student HMO possession under the Renters' Rights Act?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For student-only HMOs, landlords must serve preliminary written notice by 31 May 2026, then a possession notice between 1 May and 31 July 2026. The notice period is reduced from 4 months to 2 months for notices served between 1 May and 31 July 2026."
           }
         }
       ]
@@ -223,8 +240,8 @@
         <h1>Section 8 Ground Finder</h1>
         <p class="subtitle">Find out which Section 8 grounds apply to your situation</p>
         
-        <div class="deadline-banner">
-            ⚠️ From 1 May 2026, Section 21 is abolished. Section 8 becomes the only eviction route.
+        <div class="deadline-banner" id="s8banner">
+            ⚠️ Section 21 abolished in <span id="s8countdown">8</span> days (1 May 2026). Section 8 is the only eviction route.
         </div>
 
         <div class="quiz-container" id="quiz">
@@ -311,16 +328,52 @@
                     { text: 'Yes', value: 'yes' },
                     { text: 'No', value: 'no' }
                 ]
+            },
+            {
+                id: 'student_hmo',
+                question: 'Is this a student HMO (House in Multiple Occupation)?',
+                options: [
+                    { text: 'Yes, student-only HMO', value: 'yes' },
+                    { text: 'No', value: 'no' }
+                ]
             }
         ];
 
         const grounds = {
             1: {
-                title: 'Ground 1: Landlord Occupation',
+                title: 'Ground 1: Landlord Occupation (pre-RRA)',
                 type: 'mandatory',
-                desc: 'You previously lived in the property and wish to return, or you need it for a family member.',
+                desc: 'You previously lived in the property and wish to return, or you need it for a family member. Still valid for tenancies started before 1 May 2026 where written notice was given at the start.',
                 notice: '2 months notice required. Must have served written notice at start of tenancy.',
                 requires: ['landlord_use:landlord', 'landlord_use:family', 'notice_given:yes']
+            },
+            '1A': {
+                title: 'Ground 1A: Intending to Sell (NEW — RRA)',
+                type: 'discretionary',
+                desc: 'The Renters\' Rights Act introduces this new ground for landlords who want to sell the property. The court will consider the tenant\'s circumstances. You must genuinely intend to sell and cannot re-let to another tenant.',
+                notice: '2 months notice required.',
+                requires: ['selling:yes']
+            },
+            '1B': {
+                title: 'Ground 1B: Landlord Occupation (NEW — RRA)',
+                type: 'discretionary',
+                desc: 'The Renters\' Rights Act replaces Ground 1 with Ground 1B for tenancies from 1 May 2026. You or a family member intend to occupy the property as your main home. The court considers tenant circumstances. No prior written notice clause needed (unlike old Ground 1).',
+                notice: '2 months notice required.',
+                requires: ['landlord_use:landlord', 'landlord_use:family']
+            },
+            '4A': {
+                title: 'Ground 4A: Student HMO (NEW — RRA)',
+                type: 'mandatory',
+                desc: 'For student-only HMOs, the landlord intends to use the property for non-residential purposes or redevelop it. Must serve preliminary written notice by 31 May 2026, then possession notice between 1 May and 31 July 2026.',
+                notice: '2 months notice (reduced from 4 months for notices 1 May–31 July 2026). Preliminary notice deadline: 31 May 2026.',
+                requires: ['student_hmo:yes']
+            },
+            '8repeat': {
+                title: 'Repeated Serious Arrears (NEW — RRA)',
+                type: 'mandatory',
+                desc: 'The Renters\' Rights Act adds a mandatory ground when the tenant has been 2+ months in arrears on two or more occasions within the past 3 years. This closes the loophole where tenants pay just enough to reset the Ground 8 clock.',
+                notice: '2 weeks notice required.',
+                requires: ['arrears:2months']
             },
             2: {
                 title: 'Ground 2: Mortgage Repossession',
@@ -515,6 +568,24 @@
         }
 
         init();
+
+        // Dynamic countdown for S21 abolition
+        (function() {
+            const deadline = new Date('2026-05-01T00:00:00+01:00');
+            const el = document.getElementById('s8countdown');
+            const banner = document.getElementById('s8banner');
+            if (!el || !banner) return;
+            function update() {
+                const diff = deadline - new Date();
+                if (diff > 0) {
+                    el.textContent = Math.ceil(diff / 86400000);
+                } else {
+                    banner.innerHTML = '🚫 Section 21 is ABOLISHED. Section 8 is the only eviction route.';
+                }
+            }
+            update();
+            setInterval(update, 60000);
+        })();
     </script>
 </body>
 </html>
