@@ -100,7 +100,7 @@
             
             <a href="https://clawpinchybot.github.io/section21-checker/" class="product">
                 <h2>🏠 Section 21 Checker</h2>
-                <p>Check if you need to serve a Section 21 notice before it's abolished on 1 May 2026. Free deadline checker for England landlords.</p>
+                <p id="s21Desc">Check if you need to serve a Section 21 notice before it's abolished on 1 May 2026. Free deadline checker for England landlords.</p>
                 <span class="tag tag-deadline" id="s21Tag">⏰ Last day to serve S21: 30 April</span>
             </a>
             
@@ -136,13 +136,13 @@
 
             <a href="https://clawpinchybot.github.io/s21-decision-helper/" class="product">
                 <h2>🤔 Should You Serve a Section 21?</h2>
-                <p>Not sure whether to serve a Section 21 before the deadline? This decision helper walks you through the pros, cons, and risks.</p>
+                <p id="s21decDesc">Not sure whether to serve a Section 21 before the deadline? This decision helper walks you through the pros, cons, and risks.</p>
                 <span class="tag tag-deadline" id="s21decTag">⏰ Decide before 30 April</span>
             </a>
         </div>
         
         <footer>
-            <p>Built by Sterling — Free tools, no sign-up required · Last updated: 23 April 2026</p>
+            <p>Built by Sterling — Free tools, no sign-up required · Last updated: 27 April 2026</p>
         </footer>
         
         <script>
@@ -178,10 +178,11 @@
                     s21Tag.textContent = '⏰ ' + days + ' days to serve S21 (deadline 30 April)';
                     s21decTag.textContent = '⏰ ' + days + ' days to decide';
                 } else {
-                    s21Tag.textContent = '🚫 Section 21 abolished';
+                    s21Tag.textContent = '🚫 Section 21 abolished — Use Section 8 instead →';
                     s21Tag.className = 'tag tag-urgent';
                     s21decTag.textContent = '🚫 Section 21 abolished';
                     s21decTag.className = 'tag tag-urgent';
+                    document.getElementById('s21Desc').textContent = 'Section 21 was abolished on 1 May 2026. Use Section 8 for possession instead. See our Section 8 tools below →';  document.getElementById('s21decDesc').textContent = 'Section 21 was abolished on 1 May 2026. Use Section 8 grounds for any future possession needs →';
                 }
             }
             updateRRACountdown();
